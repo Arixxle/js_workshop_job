@@ -11,7 +11,7 @@ let loc = document.getElementsByName('location')
 let fullTime = document.getElementsByName('full_time')
 let btn = document.querySelector('.button')
 let container = document.querySelector('.table')
-
+let nextPage = document.querySelector('.pagination-next')
 
 var paramsString = "https://still-spire-37210.herokuapp.com/positions.json?";
 // var searchParams = new URLSearchParams(paramsString);
@@ -27,8 +27,21 @@ btn.addEventListener('click', function (e) {
       return resp.json();
     })
     .then(function (data) {
-      console.log(data);
-      container.innerHTML = data.map(toHtml).join(' ');
+      console.log(data.length);
+
+
+      if (data.length === 50) {
+        nextPage.removeAttribute('disabled')
+        container.innerHTML = data.map(toHtml).join(' ');
+        nextPage.addEventListener('click', function () {
+          
+        })
+      } else {
+        container.innerHTML = data.map(toHtml).join(' ');
+      }
+
+
+      
     })
   
 })
