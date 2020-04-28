@@ -28,7 +28,9 @@ btn.addEventListener('click', function (e) {
     })
     .then(function (data) {
       console.log(data);
+      container.innerHTML = data.map(toHtml).join(' ');
     })
+  
 })
 
 function toHtml(jsn) {
