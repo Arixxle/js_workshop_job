@@ -10,6 +10,8 @@ let des = document.getElementsByName('description')
 let loc = document.getElementsByName('location')
 let fullTime = document.getElementsByName('full_time')
 let btn = document.querySelector('.button')
+let container = document.querySelector('.table')
+
 
 var paramsString = "https://still-spire-37210.herokuapp.com/positions.json?";
 // var searchParams = new URLSearchParams(paramsString);
@@ -29,12 +31,26 @@ btn.addEventListener('click', function (e) {
     })
 })
 
-// fetch(url)
-// .then(function (resp) {
-//   return resp.json();
-// }).then(function (data) {
-//   console.log(data);
-// })
+function toHtml(jsn) {
+
+  return `
+  <tbody id="job-pannel">
+    <tr>
+      <td>
+        <h4><a href="${jsn.url}">${jsn.title}</a></h4>
+        <p class="source">
+        <a class="company" href="${jsn.company_url}">${jsn.company}</a>
+        –
+        <strong class="fulltime">${jsn.type}</strong>
+        </p>
+      </td>
+      <td class="meta">
+        <span class="location">${jsn.location}</span>
+      </td>
+    </tr>
+  </tbody>
+  `;
+}
 
 /* Task_2 */
 // fetch(url).then(function(response) {
@@ -42,30 +58,6 @@ btn.addEventListener('click', function (e) {
 // }).then(function (value) { JOBS.push(value)})
 // console.log(JOBS);
 
-
-
-
-
-// function toHtml(data) {
-//   return `
-//   <tbody id="job-pannel">
-//     <tr>
-//       <td>
-//         <h4><a href="${data.url}">
-//         ${data.title}</a></h4>
-//         <p class="source">
-//         <a class="company" href="${data.company_url}">${data.company}</a>
-//         –
-//         <strong class="fulltime">${data.type}</strong>
-//         </p>
-//       </td>
-//       <td class="meta">
-//         <span class="location">${data.location}</span>
-//       </td>
-//     </tr>
-//   </tbody>
-//   `
-// }
 
 
 /* feature/task_1 */
