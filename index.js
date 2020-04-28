@@ -12,41 +12,61 @@ let fullTime = document.getElementsByName('full_time')
 let btn = document.querySelector('.button')
 
 var paramsString = "https://still-spire-37210.herokuapp.com/positions.json?";
-var searchParams = new URLSearchParams(paramsString);
-// searchParams.append("topic", "webdev");
-
-
-
+// var searchParams = new URLSearchParams(paramsString);
 
 btn.addEventListener('click', function (e) {
   e.preventDefault();
+  let path = "https://still-spire-37210.herokuapp.com/positions.json?" + `description=${des[0].value}` + `&location=${loc[0].value}` + `&full_time=on`
 
-  searchParams.append("description", des[0].value);
-  searchParams.append("location", loc[0].value);
-  searchParams.append("full_time", fullTime[0].checked);
-  let path = searchParams.toString();
   console.log(path);
 
-  fetch(path).then(function(response) {
-    return response.json();
-  }).then(function (value) {
-    JOBS.push(value)
-  })
-  console.log(JOBS);
-  // console.log(fullTime);
-  // console.log(des[0].value);
+  fetch(path)
+    .then(function (resp) {
+      return resp.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    })
 })
 
-//?description=ruby&location=new york&full_time=true
+// fetch(url)
+// .then(function (resp) {
+//   return resp.json();
+// }).then(function (data) {
+//   console.log(data);
+// })
 
-
-
-
-
-fetch(url).then(function(response) {
-  return response.json();
-}).then(function (value) { JOBS.push(value)})
+/* Task_2 */
+// fetch(url).then(function(response) {
+//   return response.json();
+// }).then(function (value) { JOBS.push(value)})
 // console.log(JOBS);
+
+
+
+
+
+// function toHtml(data) {
+//   return `
+//   <tbody id="job-pannel">
+//     <tr>
+//       <td>
+//         <h4><a href="${data.url}">
+//         ${data.title}</a></h4>
+//         <p class="source">
+//         <a class="company" href="${data.company_url}">${data.company}</a>
+//         –
+//         <strong class="fulltime">${data.type}</strong>
+//         </p>
+//       </td>
+//       <td class="meta">
+//         <span class="location">${data.location}</span>
+//       </td>
+//     </tr>
+//   </tbody>
+//   `
+// }
+
 
 /* feature/task_1 */
 ham.addEventListener('click', function () {
